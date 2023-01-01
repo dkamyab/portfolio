@@ -42,7 +42,7 @@ testing$predCorrect = pred==testing$fraud
 confusionMatrix(as.factor(pred), as.factor(testing$fraud))
 qplot(distance_from_home, ratio_to_median_purchase_price, colour=predCorrect, data=testing, main="newdata Predictions" )
 
-#RESULTS
+#######RESULTS########
 #          Reference
 #Prediction     0     1
 #         0 27383     4
