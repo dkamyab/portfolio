@@ -1,0 +1,26 @@
+#Breast cancer pathology structure data from 569 patients
+#Dataset Source: https://www.kaggle.com/datasets/sztuanakurun/breast-cancer
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+library(pROC)
+library(caret)
+
+df = read.csv('data.csv', header = T)
+set.seed(1)
+
+#Separating data into training and testing subsets
+inTrain = createDataPartition(y=df$diagnosis, p=0.8, list=FALSE)
+training = df[inTrain,]
+testing = df[-inTrain,]
+
+#Building random forests model
+modFit = train(diagnosis ~., data=training, method="rf", prox=TRUE)
+pred = predict(modFit, testing)
+
+#Evaluating model vs testing data
+testing$predCorrect = pred==testing$diagnosis
+table(pred, testing$diagnosis)
+confusionMatrix(as.factor(pred), as.factor(testing$diagnosis))
+qplot(id, radius_mean, colour=predCorrect, data=testing, main= "newdata Predictions")
+
