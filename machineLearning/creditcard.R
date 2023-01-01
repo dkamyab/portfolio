@@ -8,6 +8,7 @@ library(parallel)
 library(doParallel)
 library(broom)
 library(pROC)
+
 df = read.csv('creditcard.csv', header = T)
 #Reducing number of rows in dataset to make more computational processing more manageable
 df = df[-(100001:1000000),]
