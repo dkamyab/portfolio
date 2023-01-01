@@ -1,3 +1,5 @@
+#Creating a random forrests model to flag whether or not credit card transactions are fraudlet
+#Dataset Source: https://www.kaggle.com/datasets/dhanushnarayananr/credit-card-fraud
 library(tidyverse)
 library(dplyr)
 library(caret)
