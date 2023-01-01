@@ -24,3 +24,15 @@ table(pred, testing$diagnosis)
 confusionMatrix(as.factor(pred), as.factor(testing$diagnosis))
 qplot(id, radius_mean, colour=predCorrect, data=testing, main= "newdata Predictions")
 
+#########RESULTS#########
+
+#Prediction  B  M
+         B 70  4
+         M  1 38
+                                          
+#               Accuracy : 0.9558          
+#                95% CI : (0.8998, 0.9855)
+#    P-Value [Acc > NIR] : <2e-16          
+                                          
+#            Sensitivity : 0.9859          
+#            Specificity : 0.9048          
