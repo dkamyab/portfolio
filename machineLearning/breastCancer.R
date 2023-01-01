@@ -24,6 +24,7 @@ table(pred, testing$diagnosis)
 confusionMatrix(as.factor(pred), as.factor(testing$diagnosis))
 qplot(id, radius_mean, colour=predCorrect, data=testing, main= "newdata Predictions")
 
+
 #########RESULTS#########
 
 #Prediction  B  M
