@@ -44,16 +44,19 @@ confusionMatrix(as.factor(pred), as.factor(testing$fraud))
 qplot(distance_from_home, ratio_to_median_purchase_price, colour=predCorrect, data=testing, main="newdata Predictions" )
 
 #######RESULTS########
+#Confusion Matrix and Statistics
+
 #          Reference
 #Prediction     0     1
-#         0 27383     4
-#         1     4  2609
-                                          
-#               Accuracy : 0.9997          
-#                 95% CI : (0.9995, 0.9999)
-#    P-Value [Acc > NIR] : <2e-16                                                    
-                                          
-#            Sensitivity : 0.9999          
-#            Specificity : 0.9985
+#         0 27398     4
+#         1     0  2597
+                                     
+#               Accuracy : 0.9999     
+#                 95% CI : (0.9997, 1)
+#    P-Value [Acc > NIR] : <2e-16     
+                                   
+                                     
+#            Sensitivity : 1.0000     
+#            Specificity : 0.9985  
 
 
