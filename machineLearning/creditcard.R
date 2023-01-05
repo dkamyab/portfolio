@@ -53,9 +53,7 @@ qplot(distance_from_home, ratio_to_median_purchase_price, colour=predCorrect, da
                                      
 #               Accuracy : 0.9999     
 #                 95% CI : (0.9997, 1)
-#    P-Value [Acc > NIR] : <2e-16     
-                                   
-                                     
+#    P-Value [Acc > NIR] : <2e-16                        
 #            Sensitivity : 1.0000     
 #            Specificity : 0.9985  
 
