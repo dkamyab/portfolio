@@ -10,11 +10,11 @@ library(broom)
 library(pROC)
 
 df = read.csv('creditcard.csv', header = T)
-#Reducing number of rows in dataset to make more computational processing more manageable
+#Reducing number of rows in dataset to make more computational processing more manageable by randomly selecting 100,000 rows
 set.seed(1)
 df = sample_n(df, 100000)
 
-#Configuring Parallel Processing
+#Configuring Parallel Processing, for faster computational performance
 cluster = makeCluster(detectCores() - 1) # convention to leave 1 core for OS
 registerDoParallel(cluster)
 
