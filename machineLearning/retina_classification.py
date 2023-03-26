@@ -9,12 +9,11 @@ from matplotlib import pyplot as plt
 ##https://www.kaggle.com/datasets/paultimothymooney/kermany2018
 ##Comparing Normal with CNV
 
+##ENABLING GPU PROCESSING TO INCREASE EXECUTIONAL PERFORMANCE
 gpus = tf.config.experimental.list_physical_devices('GPU')
 for gpu in gpus: 
     tf.config.experimental.set_memory_growth(gpu, True)
 tf.config.list_physical_devices('GPU')
-
-
 
 #IMPORTING THE DATA; IMAGES GET ASSIGNED TO A CLASS OF EITHER OF 0 FOR CNV OR 1 FOR Normal, BASED ON THE FOLDER THEY CAME FROM
 #BATCH SIZE HAS BEEN SET AT 32, WHICH MEANS THE AI MODEL WITH TRAIN WITH 32 IMAGES AT A TIME
@@ -45,7 +44,6 @@ print(train_size)
 train = data.take(train_size)
 val = data.skip(train_size).take(val_size)
 test = data.skip(train_size+val_size).take(test_size)
-
 
 #IMPORTING IN DEPENDENCIES
 from tensorflow.keras.models import Sequential
@@ -79,7 +77,6 @@ model.add(Dense(1, activation='sigmoid'))
 model.compile('adam', loss=tf.losses.BinaryCrossentropy(), metrics=['accuracy'])
 model.summary()
 
-
 #####TRAINING#######
 #CREATING LOG DIRECTORY
 logdir='logs'
@@ -87,8 +84,6 @@ logdir='logs'
 tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=logdir)
 #FITTING THE DATA (TRAINING); EACH EPOCH IS A RUN THROUGH THE ENTIRE SET OF DATA; CAN MODIFY THIS TO ADDRESS OVERFITTING
 hist = model.fit(train, epochs=10, validation_data=val, callbacks=[tensorboard_callback])
-
-
 
 #PLOTTING THE LOSS FROM THE HIST MODEL; IDEALLY BOTH OF THESE FIGURES SHOULD BE GOING DOWN TOGETHER; IF THEY DIVERGE, THIS IS AN INDICATION THAT YOU HAVE OVERFIT
 fig = plt.figure()
@@ -105,8 +100,6 @@ plt.plot(hist.history['val_accuracy'], color='orange', label='val_accuracy')
 fig.suptitle('Accuracy', fontsize=20)
 plt.legend(loc="upper left")
 plt.show()
-
-
 
 ########EVALUATION##########
 from tensorflow.keras.metrics import Precision, Recall, BinaryAccuracy
@@ -125,12 +118,11 @@ for batch in test.as_numpy_iterator():
     acc.update_state(y, yhat)
 print(pre.result(), re.result(), acc.result())
 
-
-
 ##SAVING THE MODEL FOR THE FUTURE
 from tensorflow.keras.models import load_model
 #SAVING IT IN A FOLDER CALLED "MODELS" WITH A NAME OF "IMAGE CLASSIFIER"
 model.save(os.path.join('models','imageclassifier.h5'))
+
 
 
 
