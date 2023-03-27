@@ -6,6 +6,15 @@ library(ggplot2)
 library(pROC)
 library(caret)
 
+#Configuring Parallel Processing, for faster computational performance
+cluster = makeCluster(detectCores() - 1) # convention to leave 1 core for OS
+registerDoParallel(cluster)
+
+fitControl = trainControl(method = "cv",
+                          number = 5,
+                          allowParallel = TRUE)
+
+#Importing Data
 df = read.csv('data.csv', header = T)
 set.seed(1)
 
